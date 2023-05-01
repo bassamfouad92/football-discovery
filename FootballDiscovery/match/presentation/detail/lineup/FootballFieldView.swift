@@ -18,8 +18,8 @@ struct FootballFieldView: View {
                     let height = UIScreen.main.bounds.height
                     let gridWidth = width / 2
                     let gridHeight = height / 2
-                    let x = CGFloat(CGFloat(col) * gridWidth / 3.5) * 1.5
-                    let y = CGFloat(CGFloat(row) * gridHeight / 4.2)
+                    let x = player.isGoalKeeper ? CGFloat(1 * gridWidth) : CGFloat(CGFloat(col) * gridWidth / 3.5) * 1.5
+                    let y = CGFloat(CGFloat(row) * gridHeight / 4)
                     let playerView = PlayerView(player: player)
                     playerView
                         .position(x: x, y: y)
@@ -32,7 +32,7 @@ struct FootballFieldView: View {
 struct FootballFieldView_Previews: PreviewProvider {
     static var previews: some View {
         FootballFieldView(players: [
-            PlayerViewData(id:1, playerNumber: 1, posX: 1, posY: 1, shirtName: "Bassam")
+            PlayerViewData(id:1, playerNumber: 1, posX: 1, posY: 1, shirtName: "Bassam", isGoalKeeper: false)
         ])
     }
 }

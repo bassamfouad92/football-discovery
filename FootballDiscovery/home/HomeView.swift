@@ -13,8 +13,9 @@ struct HomeView: View {
                     Section(header:
                                 Text("\(viewModel.isLoading ? "Loading" : "Live") Matches").fontWeight(Font.Weight.bold)){
                         if viewModel.isLoading {
-                            ProgressView().tint(.yellow)
-                        } else {
+                            ProgressView()
+                        }
+                        else {
                             MatchListView(matches: viewModel.matches)
                         }
                     }.onAppear {

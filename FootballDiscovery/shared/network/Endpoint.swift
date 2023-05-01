@@ -25,7 +25,7 @@ extension Endpoint {
     var headers: [String: Any] {
         return [
             "x-rapidapi-host": "v3.football.api-sports.io",
-            "x-rapidapi-key" : "f5ea0cfbaf920067baff2c422c6f0311"
+            "x-rapidapi-key" : "85015d79dd8246fd53b25117de65f377"
         ]
     }
     

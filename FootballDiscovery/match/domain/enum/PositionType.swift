@@ -2,12 +2,12 @@
 
 import Foundation
 
-enum PositionType: Codable {
+enum PositionType: String, Codable {
     
-    case forward
-    case midfielder
-    case defender
-    case goalkeeper
+    case forward = "F"
+    case midfielder = "M"
+    case defender = "D"
+    case goalkeeper = "G"
     
     private enum CodingKeys: String, CodingKey {
             case forward = "F", midfielder = "M", defender = "D", goalkeeper = "G"

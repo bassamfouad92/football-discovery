@@ -11,21 +11,20 @@ struct PlayerView: View {
              ZStack {
                  Image(systemName: "tshirt.fill")
                     .font(.system(size: 40))
-                    .tint(.red)
                     .padding(2)
-                    .foregroundColor(.purple)
+                    .foregroundColor(player.isGoalKeeper ? .red : .purple)
                     .clipShape(Circle())
                  Text("\(player.playerNumber)").foregroundColor(.white).padding(2)
                      .font(Font.headline.weight(.bold))
              }
-            Text("\(player.shirtName)")
-                 .font(Font.headline.weight(.bold)).foregroundColor(.yellow)
+             Text("\(player.shirtName) \(player.isGoalKeeper ? "(G)" : "")")
+                 .font(.system(size: 14, weight: .bold)).foregroundColor(.yellow).fixedSize().frame(width: 50)
         }
     }
 }
 
 struct PlayerView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerView(player: PlayerViewData(id: 1, playerNumber: 10, posX: 4, posY: 1, shirtName: "Messi"))
+        PlayerView(player: PlayerViewData(id: 1, playerNumber: 10, posX: 4, posY: 1, shirtName: "Messi", isGoalKeeper: false))
     }
 }

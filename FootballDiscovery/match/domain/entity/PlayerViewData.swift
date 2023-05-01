@@ -8,6 +8,7 @@ struct PlayerViewData: Identifiable {
     var posX: Int
     var posY: Int
     var shirtName: String
+    var isGoalKeeper: Bool
 }
 
 

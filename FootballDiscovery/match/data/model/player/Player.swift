@@ -7,7 +7,7 @@ struct Player: Codable, Identifiable {
     let id: Int
     let name: String
     let number: Int
-    let pos: PositionType
+    let pos: PositionType?
     let grid: String?
     
 }

@@ -30,7 +30,6 @@ struct ScoreView: View {
                 Text(match.teams.away.name)
                     .font(.system(size: 12))
                     .fontWeight(Font.Weight.light)
-                    .foregroundColor(.yellow)
                     .padding(.trailing, 5)
                     .tint(.white)
             }.frame(width: 120)

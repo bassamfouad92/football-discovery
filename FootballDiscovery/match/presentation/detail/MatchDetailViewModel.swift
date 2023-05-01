@@ -14,14 +14,20 @@ class MatchDetailViewModel: ObservableObject {
     @Published var players: [PlayerViewData] = []
     @Published var isLoading: Bool = false
     @Published var error: Error?
-    @Published var selectedTeamIndex = 0
+    @Published var selectedTeamIndex: Int = 0
+    @Published var formation: String = "-"
 
+    var selectedTeamIndexPublisher: AnyPublisher<Int, Never> {
+            $selectedTeamIndex.eraseToAnyPublisher()
+    }
+    
     init(matchRepository: MatchRepository) {
         self.matchRepository = matchRepository
         
-        _ = $selectedTeamIndex.map {
-            self.assignPlayer(index: $0)
-        }
+        //segment selection
+        $selectedTeamIndex.sink { [weak self] index in
+            self?.assignPlayer(index: index)
+        }.store(in: &cancellables)
     }
     
     private func assignPlayer(index: Int) {
@@ -31,6 +37,7 @@ class MatchDetailViewModel: ObservableObject {
         self.players = self.teams[index].players.map {
             $0.map { ViewMapper.mapPlayer(player: $0)}
         } ?? []
+        self.formation = self.teams[index].formation ?? "-"
     }
     
     func fetchTeams(id: Int) {
@@ -49,10 +56,7 @@ class MatchDetailViewModel: ObservableObject {
                 
             }) { [weak self] teams in
                 self?.teams = teams
-                self?.teams.forEach {
-                    print("\($0.name)")
-                    print("\($0.players?.first?.name)")
-                }
+                self?.assignPlayer(index: 0)
             }.store(in: &cancellables)
     }
 }
