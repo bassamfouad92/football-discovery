@@ -6,7 +6,7 @@ import SwiftUI
 struct FootballDiscoveryApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView(viewModel: AppFactory.makeHomeViewModel())
         }
     }
 }
