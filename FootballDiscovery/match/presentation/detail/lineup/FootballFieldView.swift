@@ -30,11 +30,3 @@ struct FootballFieldView: View {
             }.background(Color.black)
         }
 }
-
-/*struct FootballFieldView_Previews: PreviewProvider {
-    static var previews: some View {
-        FootballFieldView(viewModel: FootballFieldViewModel(players: [
-            PlayerViewData(id:1, playerNumber: 1, posX: 1, posY: 1, shirtName: "Bassam", isGoalKeeper: false, maxYPos: 4)
-        ]))
-    }
-}*/
