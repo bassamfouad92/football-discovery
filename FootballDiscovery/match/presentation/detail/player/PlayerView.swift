@@ -25,6 +25,6 @@ struct PlayerView: View {
 
 struct PlayerView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerView(player: PlayerViewData(id: 1, playerNumber: 10, posX: 4, posY: 1, shirtName: "Messi", isGoalKeeper: false))
+        PlayerView(player: PlayerViewData(id: 1, playerNumber: 10, posX: 4, posY: 1, shirtName: "Messi", isGoalKeeper: false, maxYPos: 1))
     }
 }

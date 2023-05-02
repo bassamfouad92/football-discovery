@@ -27,7 +27,7 @@ struct MatchDetailView: View {
                         Text(viewModel.formation).font(.title2).foregroundColor(.purple)
                     }.padding([.leading, .trailing], 20)
                     /// football field view
-                    FootballFieldView(players: viewModel.players)
+                    FootballFieldView(players: $viewModel.players, maxColCounts: viewModel.getMaxCol())
                 }
             }.onAppear {
                 viewModel.fetchTeams(id: match.fixture.id)

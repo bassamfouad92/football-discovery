@@ -34,10 +34,19 @@ class MatchDetailViewModel: ObservableObject {
         if teams.isEmpty {
             return
         }
+        self.players.removeAll()
         self.players = self.teams[index].players.map {
             $0.map { ViewMapper.mapPlayer(player: $0)}
         } ?? []
         self.formation = self.teams[index].formation ?? "-"
+    }
+    
+    func getMaxCol() -> [Int: Int] {
+        var maxColCounts = [Int: Int]()
+        self.players.forEach {
+            maxColCounts[$0.posX] = (maxColCounts[$0.posX] ?? 0) + 1
+        }
+        return maxColCounts
     }
     
     func fetchTeams(id: Int) {

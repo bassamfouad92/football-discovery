@@ -3,9 +3,10 @@
 import SwiftUI
 
 struct FootballFieldView: View {
-    
-    let players: [PlayerViewData]
-        
+            
+    @Binding var players: [PlayerViewData]
+    let maxColCounts: [Int: Int]
+ 
         var body: some View {
             ZStack(alignment: .topLeading) {
                 Image("football_field")
@@ -18,7 +19,8 @@ struct FootballFieldView: View {
                     let height = UIScreen.main.bounds.height
                     let gridWidth = width / 2
                     let gridHeight = height / 2
-                    let x = player.isGoalKeeper ? CGFloat(1 * gridWidth) : CGFloat(CGFloat(col) * gridWidth / 3.5) * 1.5
+                    let dividePlayerFactor = CGFloat(1 + (maxColCounts[row] ?? 0)) * 0.5
+                    let x = CGFloat(CGFloat(col) * gridWidth/dividePlayerFactor) * 1
                     let y = CGFloat(CGFloat(row) * gridHeight / 4)
                     let playerView = PlayerView(player: player)
                     playerView
@@ -29,10 +31,10 @@ struct FootballFieldView: View {
         }
 }
 
-struct FootballFieldView_Previews: PreviewProvider {
+/*struct FootballFieldView_Previews: PreviewProvider {
     static var previews: some View {
-        FootballFieldView(players: [
-            PlayerViewData(id:1, playerNumber: 1, posX: 1, posY: 1, shirtName: "Bassam", isGoalKeeper: false)
-        ])
+        FootballFieldView(viewModel: FootballFieldViewModel(players: [
+            PlayerViewData(id:1, playerNumber: 1, posX: 1, posY: 1, shirtName: "Bassam", isGoalKeeper: false, maxYPos: 4)
+        ]))
     }
-}
+}*/
