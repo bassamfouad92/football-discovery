@@ -22,6 +22,13 @@ jobs:
           echo $default_scheme | cat > default
           echo "Using default scheme: $default_scheme"
 
+      - name: Install Apple Certificate and Provisioning Profile
+        uses: apple/setup-ios@v2
+        with:
+          apple-id: ${{ secrets.APPLE_ID }}
+          apple-password: ${{ secrets.APPLE_PASSWORD }}
+          xcode-version: '14.2' # Adjust to your Xcode version
+
       - name: Build and Test
         env:
           SCHEME: ${{ env.DEFAULT_SCHEME || 'default' }}
