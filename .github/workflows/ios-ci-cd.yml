@@ -26,7 +26,8 @@ jobs:
       - name: Build and Test
         run: |
           xcodebuild clean build -workspace FootballDiscovery.xcworkspace -scheme FootballDiscovery -destination 'platform=iOS Simulator,name=iPhone 12'
-deploy:
+
+  deploy:
     runs-on: ubuntu-latest
     needs: build
     steps:
@@ -39,3 +40,4 @@ deploy:
           groups: 'Collaborators'
           release_notes: 'New iOS build released'
           destination_type: 'groups'
+
