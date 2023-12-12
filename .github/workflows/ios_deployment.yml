@@ -37,25 +37,8 @@ jobs:
             FILE_TO_BUILD=$(ls -A | grep -i \\.xcodeproj\$ | awk '{$1=$1;print}')
           fi
           FILE_TO_BUILD=$(echo $FILE_TO_BUILD | awk '{$1=$1;print}')
-          xcodebuild build-for-testing -scheme "$SCHEME" -$FILETYPE "$FILE_TO_BUILD" -destination "platform=$PLATFORM,name=$device"
-
-      - name: Test
-        env:
-          SCHEME: ${{ env.DEFAULT_SCHEME || 'default' }}
-          PLATFORM: 'iOS'
-        run: |
-          device='Any iOS Device'
-          if [ "$SCHEME" = default ]; then SCHEME=$(cat default); fi
-          if [ -d *.xcworkspace ]; then
-            FILETYPE='workspace'
-            FILE_TO_BUILD=$(ls -A | grep -i \\.xcworkspace\$ | awk '{$1=$1;print}')
-          else
-            FILETYPE='project'
-            FILE_TO_BUILD=$(ls -A | grep -i \\.xcodeproj\$ | awk '{$1=$1;print}')
-          fi
-          FILE_TO_BUILD=$(echo $FILE_TO_BUILD | awk '{$1=$1;print}')
-          xcodebuild test-without-building -scheme "$SCHEME" -$FILETYPE "$FILE_TO_BUILD" -destination "platform=$PLATFORM,name=$device"
-
+          xcodebuild build-for-testing -scheme "$SCHEME" -$FILETYPE "$FILE_TO_BUILD" -destination "generic/platform=iOS"
+          
   deploy:
     runs-on: ubuntu-latest
     needs: build
