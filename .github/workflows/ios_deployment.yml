@@ -27,7 +27,7 @@ jobs:
           SCHEME: ${{ env.DEFAULT_SCHEME || 'default' }}
           PLATFORM: 'iOS Simulator'
         run: |
-          device=$(xcrun xctrace list devices 2>&1 | grep -oE 'iPhone.*?[^\(]+' | head -1 | awk '{$1=$1;print}' | sed -e "s/ Simulator$//")
+          device="iPhone SE (2nd generation)"
           if [ "$SCHEME" = default ]; then SCHEME=$(cat default); fi
           if [ -d *.xcworkspace ]; then
             FILETYPE='workspace'
@@ -37,14 +37,14 @@ jobs:
             FILE_TO_BUILD=$(ls -A | grep -i \\.xcodeproj\$ | awk '{$1=$1;print}')
           fi
           FILE_TO_BUILD=$(echo $FILE_TO_BUILD | awk '{$1=$1;print}')
-          xcodebuild build-for-testing -scheme "$SCHEME" -$FILETYPE "$FILE_TO_BUILD" -destination "platform=$PLATFORM,name=$device"
+          xcodebuild build-for-testing -scheme "$SCHEME" -$FILETYPE "$FILE_TO_BUILD" -destination "platform=$PLATFORM,name=$device,OS=15.0"
 
       - name: Test
         env:
           SCHEME: ${{ env.DEFAULT_SCHEME || 'default' }}
           PLATFORM: 'iOS Simulator'
         run: |
-          device=$(xcrun xctrace list devices 2>&1 | grep -oE 'iPhone.*?[^\(]+' | head -1 | awk '{$1=$1;print}' | sed -e "s/ Simulator$//")
+          device="iPhone SE (2nd generation)"
           if [ "$SCHEME" = default ]; then SCHEME=$(cat default); fi
           if [ -d *.xcworkspace ]; then
             FILETYPE='workspace'
@@ -54,7 +54,7 @@ jobs:
             FILE_TO_BUILD=$(ls -A | grep -i \\.xcodeproj\$ | awk '{$1=$1;print}')
           fi
           FILE_TO_BUILD=$(echo $FILE_TO_BUILD | awk '{$1=$1;print}')
-          xcodebuild test-without-building -scheme "$SCHEME" -$FILETYPE "$FILE_TO_BUILD" -destination "platform=$PLATFORM,name=$device"
+          xcodebuild test-without-building -scheme "$SCHEME" -$FILETYPE "$FILE_TO_BUILD" -destination "platform=$PLATFORM,name=$device,OS=15.0"
 
   deploy:
     runs-on: ubuntu-latest
@@ -69,5 +69,3 @@ jobs:
           groups: 'Collaborators'
           release_notes: 'New iOS build released'
           destination_type: 'groups'
-
-
