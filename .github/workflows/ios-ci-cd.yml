@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.BSM_GITHUB_TOKEN }}
 
       - name: Set up Xcode
         uses: actions/setup-xcode@v2.5.1
