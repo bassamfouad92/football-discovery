@@ -25,9 +25,9 @@ jobs:
       - name: Build and Test
         env:
           SCHEME: ${{ env.DEFAULT_SCHEME || 'default' }}
-          PLATFORM: 'iOS Simulator'
+          PLATFORM: 'iOS'
         run: |
-          device="iPhone SE (2nd generation)"
+          device='Any iOS Device'
           if [ "$SCHEME" = default ]; then SCHEME=$(cat default); fi
           if [ -d *.xcworkspace ]; then
             FILETYPE='workspace'
@@ -37,14 +37,14 @@ jobs:
             FILE_TO_BUILD=$(ls -A | grep -i \\.xcodeproj\$ | awk '{$1=$1;print}')
           fi
           FILE_TO_BUILD=$(echo $FILE_TO_BUILD | awk '{$1=$1;print}')
-          xcodebuild build-for-testing -scheme "$SCHEME" -$FILETYPE "$FILE_TO_BUILD" -destination "platform=$PLATFORM,name=$device,OS=15.0"
+          xcodebuild build-for-testing -scheme "$SCHEME" -$FILETYPE "$FILE_TO_BUILD" -destination "platform=$PLATFORM,name=$device"
 
       - name: Test
         env:
           SCHEME: ${{ env.DEFAULT_SCHEME || 'default' }}
-          PLATFORM: 'iOS Simulator'
+          PLATFORM: 'iOS'
         run: |
-          device="iPhone SE (2nd generation)"
+          device='Any iOS Device'
           if [ "$SCHEME" = default ]; then SCHEME=$(cat default); fi
           if [ -d *.xcworkspace ]; then
             FILETYPE='workspace'
@@ -54,7 +54,7 @@ jobs:
             FILE_TO_BUILD=$(ls -A | grep -i \\.xcodeproj\$ | awk '{$1=$1;print}')
           fi
           FILE_TO_BUILD=$(echo $FILE_TO_BUILD | awk '{$1=$1;print}')
-          xcodebuild test-without-building -scheme "$SCHEME" -$FILETYPE "$FILE_TO_BUILD" -destination "platform=$PLATFORM,name=$device,OS=15.0"
+          xcodebuild test-without-building -scheme "$SCHEME" -$FILETYPE "$FILE_TO_BUILD" -destination "platform=$PLATFORM,name=$device"
 
   deploy:
     runs-on: ubuntu-latest
