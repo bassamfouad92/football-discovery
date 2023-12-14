@@ -85,7 +85,7 @@ jobs:
         with:
           appName: 'wzieba/Football-Discovery'
           token: ${{ secrets.APP_CENTER_SECRET }}
-          file: '**/*.ipa'
+          file: 'FootballDiscovery.ipa'
           group: 'Beta Testers'
           notifyTesters: true
           debug: false
