@@ -71,15 +71,6 @@ jobs:
           FILE_TO_BUILD=$(echo $FILE_TO_BUILD | awk '{$1=$1;print}')
           xcodebuild build-for-testing -scheme "$SCHEME" -$FILETYPE "$FILE_TO_BUILD" -destination "generic/platform=iOS"
 
-      - name: List files in workspace
-        run: |
-         find . -name '*.ipa' -print -quit
-
-      - name: Debug working directory
-        run: |
-         pwd
-         ls -R
- 
   deploy:
     runs-on: ubuntu-latest
     needs: build
@@ -89,7 +80,7 @@ jobs:
         with:
           appName: 'wzieba/Football-Discovery'
           token: ${{ secrets.APP_CENTER_SECRET }}
-          file: 'FootballDiscovery.ipa'
+          file: '**/build/ios/ipa/*.ipa'  # Adjust the path based on your project structure
           group: 'Beta Testers'
           notifyTesters: true
           debug: false
