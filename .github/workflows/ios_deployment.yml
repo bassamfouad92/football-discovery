@@ -76,12 +76,11 @@ jobs:
     needs: build
     steps:
       - name: Deploy to App Center
-        uses: microsoft/appcenter-action@v4
+        uses: wzieba/AppCenter-Github-Action@v1.3.4
         with:
           app_secret: ${{ secrets.APP_CENTER_SECRET }}
           app_name: 'Football Discovery'
           file: '**/*.ipa'
           groups: 'Collaborators'
           release_notes: 'New iOS build released'
-          destination_type: 'groups'
-          
+          destination_type: 'groups'            
