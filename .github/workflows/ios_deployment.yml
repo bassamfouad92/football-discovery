@@ -78,9 +78,9 @@ jobs:
       - name: Deploy to App Center
         uses: wzieba/AppCenter-Github-Action@v1.3.4
         with:
-          app_secret: ${{ secrets.APP_CENTER_SECRET }}
-          app_name: 'Football Discovery'
+          appName: 'Football Discovery'
+          token: ${{ secrets.APP_CENTER_SECRET }}
           file: '**/*.ipa'
-          groups: 'Collaborators'
-          release_notes: 'New iOS build released'
-          destination_type: 'groups'            
+          group: 'Beta Testers'
+          notifyTesters: true
+          debug: false
