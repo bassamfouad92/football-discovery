@@ -78,7 +78,7 @@ jobs:
       - name: Deploy to App Center
         uses: wzieba/AppCenter-Github-Action@v1.3.4
         with:
-          appName: 'Football Discovery'
+          appName: 'wzieba/Football-Discovery'
           token: ${{ secrets.APP_CENTER_SECRET }}
           file: '**/*.ipa'
           group: 'Beta Testers'
