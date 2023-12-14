@@ -56,7 +56,7 @@ jobs:
 
       - name: Build and Test
         env:
-          SCHEME: ${{ env.DEFAULT_SCHEME || 'default' }}
+          SCHEME: ${{ secrets.DEFAULT_SCHEME || 'default' }}
           PLATFORM: 'iOS'
         run: |
           device='Any iOS Device'
