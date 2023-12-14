@@ -1,0 +1,45 @@
+name: iOS CI/CD with App Center
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.BSM_GITHUB_TOKEN }}
+
+      - name: Set up Xcode
+        uses: actions/setup-xcode@v2.5.1
+        with:
+          xcode-version: '13'
+
+      - name: Install Dependencies
+        run: |
+          bundle install
+          bundle exec pod install
+
+      - name: Build and Test
+        run: |
+          xcodebuild clean build -workspace FootballDiscovery.xcworkspace -scheme FootballDiscovery -destination 'platform=iOS Simulator,name=iPhone 12'
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to App Center
+        uses: microsoft/appcenter-action@v4
+        with:
+          app_secret: ${{ secrets.APP_CENTER_SECRET }}
+          app_name: 'Football Discovery'
+          file: '**/*.ipa'
+          groups: 'Collaborators'
+          release_notes: 'New iOS build released'
+          destination_type: 'groups'
+

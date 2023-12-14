@@ -31,7 +31,7 @@ struct ScoreView: View {
                     .font(.system(size: 12))
                     .fontWeight(Font.Weight.light)
                     .padding(.trailing, 5)
-                    .tint(.white)
+                    .colorMultiply(Color.white)
             }.frame(width: 120)
         }
     }
