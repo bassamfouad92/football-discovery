@@ -55,7 +55,6 @@ jobs:
           
       - name: Build Archive
         run: |
-          pod install
           xcodebuild build -workspace FootballDiscovery.xcworkspace -configuration Automation -scheme FootballDiscovery "OTHER_CODE_SIGN_FLAGS=--keychain '$KEYCHAIN_PASSWORD'"
           xcodebuild archive -workspace FootballDiscovery.xcworkspace -scheme FootballDiscovery -archivePath FootballDiscovery.xcarchive
           xcodebuild -exportArchive -archivePath FootballDiscovery.xcarchive -exportPath . -exportOptionsPlist ./ExportOptions.plist
