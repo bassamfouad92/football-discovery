@@ -73,8 +73,11 @@ jobs:
 
       - name: List files in workspace
         run: |
-         ls -R
+         find . -name '*.ipa' -print -quit
 
+      - name: Debug working directory
+        run: |
+         pwd
  
   deploy:
     runs-on: ubuntu-latest
