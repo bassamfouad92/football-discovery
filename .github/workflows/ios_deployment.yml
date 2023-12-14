@@ -78,6 +78,7 @@ jobs:
       - name: Debug working directory
         run: |
          pwd
+         ls -R
  
   deploy:
     runs-on: ubuntu-latest
