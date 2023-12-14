@@ -57,6 +57,7 @@
 		71A21D422A00128C00C400A0 /* PlayerViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewData.swift; sourceTree = "<group>"; };
 		71A21D452A0012CB00C400A0 /* PositionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionType.swift; sourceTree = "<group>"; };
 		71A21D482A0019FF00C400A0 /* ViewMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMapper.swift; sourceTree = "<group>"; };
+		71A7FE292B2B47AD0004A4EB /* ExportOptions.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = ExportOptions.plist; sourceTree = "<group>"; };
 		71F8381729FD7CD9006BAD3E /* FootballDiscovery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FootballDiscovery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71F8381A29FD7CD9006BAD3E /* FootballDiscoveryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootballDiscoveryApp.swift; sourceTree = "<group>"; };
 		71F8381C29FD7CD9006BAD3E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -191,6 +192,7 @@
 		71F8380E29FD7CD9006BAD3E = {
 			isa = PBXGroup;
 			children = (
+				71A7FE292B2B47AD0004A4EB /* ExportOptions.plist */,
 				71F8381929FD7CD9006BAD3E /* FootballDiscovery */,
 				71F8381829FD7CD9006BAD3E /* Products */,
 			);

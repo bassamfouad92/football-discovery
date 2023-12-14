@@ -57,7 +57,7 @@ jobs:
         run: |
           xcodebuild build -workspace FootballDiscovery.xcodeproj/project.xcworkspace -configuration Automation -scheme FootballDiscovery "OTHER_CODE_SIGN_FLAGS=--keychain '$KEYCHAIN_PASSWORD'"
           xcodebuild archive -workspace FootballDiscovery.xcodeproj/project.xcworkspace -scheme FootballDiscovery -archivePath FootballDiscovery.xcarchive
-          xcodebuild -exportArchive -archivePath FootballDiscovery.xcarchive -exportPath .
+          xcodebuild -exportArchive -archivePath FootballDiscovery.xcarchive -exportPath . -exportOptionsPlist ./ExportOptions.plist
 
       - name: Check files
         run: ls -R
