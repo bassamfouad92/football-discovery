@@ -71,7 +71,7 @@ jobs:
         run: ls -R FootballDiscovery.ipa
   
   release:
-    name: Release ipa to App Center
+    name: Release ipa to Diawi
     needs: [ build ]
     runs-on: ubuntu-latest
     steps:
@@ -86,13 +86,9 @@ jobs:
     - name: Check release-ipa in directory
       run: ls -R /home/runner/work/football-discovery/football-discovery
 
-    # Upload ipa file to App Center
-    - name: Upload artifact to App Center
-      uses: wzieba/AppCenter-Github-Action@v1.3.4
+    - name: Deploy to Diawi
+      uses: rnkdsh/action-upload-diawi@v1.5.4
       with:
-        appName: 'wzieba/Football-Discovery'  # Replace with your App Center app name
-        token: ${{ secrets.APP_CENTER_SECRET }}
+        token: ${{ secrets.DIAWI_TOKEN }}
         file: FootballDiscovery.ipa
-        group: 'Beta Testers'
-        notifyTesters: true
-        debug: false
+
