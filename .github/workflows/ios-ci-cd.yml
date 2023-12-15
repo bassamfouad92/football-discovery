@@ -59,42 +59,37 @@ jobs:
           xcodebuild archive -workspace FootballDiscovery.xcodeproj/project.xcworkspace -scheme FootballDiscovery -archivePath FootballDiscovery.xcarchive
           xcodebuild -exportArchive -archivePath FootballDiscovery.xcarchive -exportPath . -exportOptionsPlist ./ExportOptions.plist
 
-      - name: Check files
-        run: ls -R
-
-      - name: Save ipa
+      # Collect the file and upload as artifact
+      - name: Collect and upload IPA artifacts
         uses: actions/upload-artifact@v2
         with:
-              name: ios-artifact
-              path: FootballDiscovery.ipa
-
-      - name: Get ipa
-        uses: actions/download-artifact@v2
-        with:
-            name: ios-artifact
-
-      - name: Print current working directory
-        run: pwd
-
-      - name: Check files in current directory
-        run: ls -R
-
-      - name: Check files in football-discovery path
-        run: ls -R /Users/runner/work/football-discovery/football-discovery/
-
-      - name: Print GitHub Workspace
-        run: echo "${{ github.workspace }}"
-
-  deploy:
+         name: release-ipa
+         # Path to the release files
+         path: build/ios/ipa/*.ipa
+         
+      - name: Check files in release-ipa directory
+        run: ls -R ${{ github.workspace }}/release-ipa
+  
+  release:
+    name: Release ipa to App Center
+    needs: [ build ]
     runs-on: ubuntu-latest
-    needs: build
     steps:
-      - name: Deploy to App Center
-        uses: wzieba/AppCenter-Github-Action@v1.3.4
-        with:
-          appName: 'wzieba/Football-Discovery'
-          token: ${{ secrets.APP_CENTER_SECRET }}
-          file: '${{ github.workspace }}/FootballDiscovery.ipa'  # Adjust the path based on your project structure
-          group: 'Beta Testers'
-          notifyTesters: true
-          debug: false
+    
+    # Retrieve ipa file from GitHub artifacts
+    - uses: actions/checkout@v2
+    - name: Get release-ipa from artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: release-ipa
+
+    # Upload ipa file to App Center
+    - name: Upload artifact to App Center
+      uses: wzieba/AppCenter-Github-Action@v1.3.4
+      with:
+        appName: 'wzieba/Football-Discovery'  # Replace with your App Center app name
+        token: ${{ secrets.APP_CENTER_SECRET }}
+        file: ${{ github.workspace }}/release-ipa/*.ipa
+        group: 'Beta Testers'
+        notifyTesters: true
+        debug: false
