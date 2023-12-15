@@ -1,4 +1,4 @@
-name: iOS CI/CD with App Center
+name: iOS CI/CD with Diawi
 
 on:
   push:
@@ -91,4 +91,5 @@ jobs:
       with:
         token: ${{ secrets.DIAWI_TOKEN }}
         file: FootballDiscovery.ipa
+        recipients: bassamfouad92@gmail.com
 
