@@ -5,7 +5,7 @@
 	<key>compileBitcode</key>
 	<true/>
 	<key>method</key>
-	<string>ad-hoc</string>
+	<string>enterprise</string>
 	<key>provisioningProfiles</key>
 	<dict>
 		<key>com.bsm.footballdiscovery</key>
