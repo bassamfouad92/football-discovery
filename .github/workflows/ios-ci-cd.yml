@@ -65,10 +65,10 @@ jobs:
         with:
          name: release-ipa
          # Path to the release files
-         path: build/ios/ipa/*.ipa
+         path: /Users/runner/work/football-discovery/football-discovery/ipa/*.ipa
 
-      - name: Check files in build/ios/ipa directory
-        run: ls -R build/ios/ipa
+      - name: Check files in /Users/runner/work/football-discovery/football-discovery/ipa ipa directory
+        run: ls -R /Users/runner/work/football-discovery/football-discovery/ipa
          
       - name: Check files in release-ipa directory
         run: ls -R ${{ github.workspace }}/release-ipa
