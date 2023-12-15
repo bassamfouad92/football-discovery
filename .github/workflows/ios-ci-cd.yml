@@ -82,6 +82,9 @@ jobs:
       - name: Check files in football-discovery path
         run: ls -R /Users/runner/work/football-discovery/football-discovery/
 
+      - name: Print GitHub Workspace
+        run: echo "${{ github.workspace }}"
+
   deploy:
     runs-on: ubuntu-latest
     needs: build
