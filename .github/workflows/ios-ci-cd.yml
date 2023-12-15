@@ -90,7 +90,7 @@ jobs:
     - name: Upload artifact to App Center
       uses: wzieba/AppCenter-Github-Action@v1.3.4
       with:
-        appName: 'wzieba/Football-Discovery'  # Replace with your App Center app name
+        appName: 'Football-Discovery'  # Replace with your App Center app name
         token: ${{ secrets.APP_CENTER_SECRET }}
         file: FootballDiscovery.ipa
         group: 'Beta Testers'
