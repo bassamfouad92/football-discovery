@@ -85,7 +85,7 @@ jobs:
         with:
           appName: 'wzieba/Football-Discovery'
           token: ${{ secrets.APP_CENTER_SECRET }}
-          file: 'FootballDiscovery.ipa'  # Adjust the path based on your project structure
+          file: '/Users/runner/work/football-discovery/football-discovery/FootballDiscovery.ipa'  # Adjust the path based on your project structure
           group: 'Beta Testers'
           notifyTesters: true
           debug: false
