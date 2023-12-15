@@ -79,6 +79,9 @@ jobs:
       - name: Check files in current directory
         run: ls -R
 
+      - name: Check files in football-discovery path
+        run: ls -R /Users/runner/work/football-discovery/football-discovery/
+
       - name: Check files in ios-artifact directory
         run: ls -R ios-artifact
 
