@@ -65,13 +65,10 @@ jobs:
         with:
          name: release-ipa
          # Path to the release files
-         path: /Users/runner/work/football-discovery/football-discovery/ipa/*.ipa
+         path: FootballDiscovery.ipa
 
-      - name: Check files in /Users/runner/work/football-discovery/football-discovery/ipa ipa directory
-        run: ls -R /Users/runner/work/football-discovery/football-discovery/ipa
-         
-      - name: Check files in release-ipa directory
-        run: ls -R ${{ github.workspace }}/release-ipa
+      - name: Check files in /Users/runner/work/football-discovery/football-discovery directory
+        run: ls -R FootballDiscovery.ipa
   
   release:
     name: Release ipa to App Center
@@ -92,7 +89,7 @@ jobs:
       with:
         appName: 'wzieba/Football-Discovery'  # Replace with your App Center app name
         token: ${{ secrets.APP_CENTER_SECRET }}
-        file: ${{ github.workspace }}/release-ipa/*.ipa
+        file: FootballDiscovery.ipa
         group: 'Beta Testers'
         notifyTesters: true
         debug: false
