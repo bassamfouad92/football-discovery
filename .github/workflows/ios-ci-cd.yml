@@ -83,6 +83,9 @@ jobs:
       with:
         name: release-ipa
 
+    - name: Check release-ipa in directory
+      run: ls -R /home/runner/work/football-discovery/football-discovery
+
     # Upload ipa file to App Center
     - name: Upload artifact to App Center
       uses: wzieba/AppCenter-Github-Action@v1.3.4
